@@ -1,0 +1,25 @@
+{
+  "name": "es6-exercise",
+  "version": "1.0.0",
+  "description": "ES6 exercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/takkyuuplayer/es6-exercise.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/takkyuuplayer/es6-exercise/issues"
+  },
+  "homepage": "https://github.com/takkyuuplayer/es6-exercise",
+  "devDependencies": {
+    "espower-babel": "^4.0.3",
+    "intelli-espower-loader": "^1.0.1",
+    "mocha": "^2.5.3",
+    "power-assert": "^1.4.1"
+  }
+}
