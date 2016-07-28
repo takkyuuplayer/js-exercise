@@ -4,7 +4,7 @@
   "description": "ES6 exercise",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:espower-babel/guess ./test/**/*.spec.es6"
+    "test": "mocha --require babel-register test/**/*.spec.es6"
   },
   "repository": {
     "type": "git",
