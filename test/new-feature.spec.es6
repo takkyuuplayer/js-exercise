@@ -100,4 +100,41 @@ describe('Parameter handling arguments', () => {
   });
 });
 
+describe('Template Literals', () => {
+  describe('String Interpolation', () => {
+    let customer = { name: "Foo" };
+    let string = `Hello ${customer.name}.
+Nice to meet you!`;
+    it('can generate template string with multiple line', () => {
+      assert.equal(string, 'Hello Foo.\nNice to meet you!');
+    });
+  });
+  describe('Custom Interpolation', () => {
+    function test (a, b, c) {
+      it('expand parameters', () => {
+        assert.deepEqual(a, [ "http://example.com/foo?bar=", "&quux=", "" ]);
+        assert.deepEqual(b, 3);
+        assert.deepEqual(c, 'quux');
+      });
+    }
+    let bar = 1;
+    let baz = 2;
+    let quux = 'quux';
+    test `http://example.com/foo?bar=${bar + baz}&quux=${quux}`;
+  });
+  describe('Raw String Access', () => {
+    function test (strings, val1) {
+      it('raw access', () => {
+        assert.deepEqual(strings, ["foo\n", "bar"]);
+        assert.equal(strings.raw[0], 'foo\\n');
+        assert.equal(strings.raw[1], 'bar');
+        assert.equal(val1, 42);
+      });
+    }
+    test `foo\n${ 42 }bar`;
 
+    it('String.raw can show raw string', () => {
+      assert.equal(String.raw `foo\n${ 42 }bar`, "foo\\n42bar");
+    });
+  });
+});
