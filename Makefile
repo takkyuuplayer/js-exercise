@@ -1,5 +1,8 @@
 .PHONY: test
 
+setup:
+	npm install
+
 test:
 	$(shell npm bin)/mocha --compilers js:espower-babel/guess ./test/**/*.spec.es6
 
