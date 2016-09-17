@@ -1,4 +1,4 @@
-const assert = require('power-assert');
+import assert from 'power-assert'
 
 describe('Constant', () => {
   const PI = 3.1415;

@@ -1,6 +1,7 @@
 {
   "presets": [
-    "babel-preset-power-assert"
+    "babel-preset-power-assert",
+    "es2015"
   ],
   "plugins": [
     ["babel-plugin-espower", { "embedAst": true }]
