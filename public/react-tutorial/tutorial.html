@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+    <script src="https://unpkg.com/jquery@3.1.0/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/underscore@1.8.3/underscore-min.js"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/remarkable@1.7.1/dist/remarkable.min.js"></script>
+    <title>React App</title>
+  </head>
+  <body>
+    <div id="root" class="container"></div>
+    <script type="text/babel">
+    const md = new Remarkable();
+    class Comment extends React.Component {
+      rawMarkup() {
+        let html = md.render(this.props.children.toString());
+        return { __html: html  }
+      }
+      render() {
+        return (
+          <div>
+            <h2>{this.props.author}</h2>
+            <span dangerouslySetInnerHTML={this.rawMarkup()} />
+          </div>
+        )
+      }
+    }
+    class CommentBox extends React.Component {
+      render() {
+        return (
+          <div className="row">
+            <h1>Comments</h1>
+            <CommentList data={this.props.data} />
+            <CommentForm />
+          </div>
+        )
+      }
+    }
+    class CommentList extends React.Component {
+      render() {
+        var commentNodes = this.props.data.map((comment) => {
+          return (
+            <Comment author={comment.author} key={comment.id}>
+              {comment.text}
+            </Comment>
+          );
+        });
+        return (
+          <div className="commentList">
+            {commentNodes}
+          </div>
+        );
+      }
+    }
+    class CommentForm extends React.Component {
+      render() {
+        return (
+          <div className="alert alert-info">
+            Hello, World! I am CommentForm.
+          </div>
+        )
+      }
+    }
+    let data = [
+      {id: 1, author: "Pete Hunt", text: "This is one comment"},
+      {id: 2, author: "Jordan Walke", text: "This is *another* comment"}
+    ];
+    ReactDOM.render(
+      <CommentBox data={data} />,
+      document.getElementById('root')
+    )
+    </script>
+  </body>
+</html>
