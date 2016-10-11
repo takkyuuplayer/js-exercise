@@ -1,3 +1,4 @@
+// http://es6-features.org/
 import assert from 'power-assert'
 
 describe('Constant', () => {
@@ -135,6 +136,90 @@ Nice to meet you!`;
 
     it('String.raw can show raw string', () => {
       assert.equal(String.raw `foo\n${ 42 }bar`, "foo\\n42bar");
+    });
+  });
+});
+
+describe('Enhanced Object Properties', () => {
+  let a = 1;
+  let b = 2;
+  it('can be written in shortly', () => {
+    let obj = {a, b};
+    assert.deepEqual(obj, {a:1, b:2});
+  });
+  it('can set key with computation', () => {
+    let obj = { [a+b]: "test"};
+    assert.deepEqual(obj, {3:"test"});
+  });
+  it('can set method', () => {
+    let obj = {
+      sum (a, b) {
+        return a + b;
+      }
+    }
+    assert.equal(obj.sum(5, 8), 13);
+  });
+});
+describe('Destructuring Assignment', () => {
+  describe('Array', () => {
+    let list = [1, 2, 3];
+    let [a, , b] = list;
+
+    it('can be destructed into indivisual variables', () => {
+      assert.equal(a, 1);
+      assert.equal(b, 3);
+    });
+
+    it('switching values', () => {
+      [b, a] = [a, b];
+      assert.equal(a, 3);
+      assert.equal(b, 1);
+    });
+
+    it('can have default values for destruction', () => {
+      let [a = 10, b = 11, c = 12, d = 14, e] = list;
+      assert.equal(a, 1);
+      assert.equal(b, 2);
+      assert.equal(d, 14);
+      assert.equal(e, undefined);
+    });
+  });
+
+  describe('Object', () => {
+    it('can be destructed into indivisual variables', () => {
+      let { a, b, c } = { a:1, b:2, c:3};
+      assert.equal(a, 1);
+      assert.equal(b, 2);
+      assert.equal(c, 3);
+    });
+    it('can be destructed deeply ', () => {
+      let { op: a, lhs: {op: b}, rhs: c} = { op: 1, lhs:{ op: 2}, rhs: 3};
+      assert.equal(a, 1);
+      assert.equal(b, 2);
+      assert.equal(c, 3);
+    });
+  });
+  describe('Function', () => {
+    it('can bind array params into indivisual variables', () => {
+      function f([name, val]) {
+        assert.equal(name, "key");
+        assert.equal(val, "value");
+      }
+      f(["key", "value"]);
+    });
+    it('can bind object params into indivisual variables', () => {
+      function f({ name: n, val: v}) {
+        assert.equal(n, "key");
+        assert.equal(v, "value");
+      }
+      f({name:"key", val:"value"});
+    });
+    it('can bind shorthand notated object into indivisual variables', () => {
+      function f({ name, val}) {
+        assert.equal(name, "key");
+        assert.equal(val, "value");
+      }
+      f({name:"key", val:"value"});
     });
   });
 });
