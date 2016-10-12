@@ -4,7 +4,7 @@ setup:
 	npm install
 
 test:
-	$(shell npm bin)/mocha --compilers js:espower-babel/guess ./test/**/*.spec.es6
+	npm run test
 
 lint:
 	$(shell npm bin)/eslint test
