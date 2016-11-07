@@ -36,11 +36,13 @@
     "mocha": "^2.5.3",
     "power-assert": "^1.4.1",
     "react-addons-test-utils": "^15.3.2",
+    "sinon": "^1.17.6",
     "webpack": "^1.13.2"
   },
   "dependencies": {
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
+    "redux": "^3.6.0",
     "urijs": "^1.18.1",
     "uuid": "^2.0.2"
   }
