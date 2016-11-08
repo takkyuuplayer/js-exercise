@@ -30,12 +30,20 @@ describe("reducer", () => {
 });
 
 describe('Redux', () => {
+  beforeEach((done) => {
+    sinon.stub(console, 'info');
+    done();
+  });
+  afterEach((done) => {
+    console.info.restore();
+    done();
+  });
+
   describe('Redux.createStore', () => {
     const store = createStore(counter);
     const render = () => {
       console.info(store.getState());
     };
-    sinon.stub(console, 'info');
 
     store.subscribe(render);
 
@@ -50,12 +58,59 @@ describe('Redux', () => {
       store.dispatch({ type: 'INCREMENT' });
 
       assert.equal(store.getState(), 1);
-      assert.equal(console.info.callCount, 2);
+      assert.equal(console.info.callCount, 1);
 
       store.dispatch({ type: 'DECREMENT' });
 
       assert.equal(store.getState(), 0);
-      assert.equal(console.info.callCount, 3);
+      assert.equal(console.info.callCount, 2);
+    });
+  });
+
+  describe('createStore from scratch', () => {
+    const createStore2 = (reducer) => {
+      let state;
+      let listeners = [];
+
+      const getState = () => state;
+      const dispatch = (action) => {
+        state = reducer(state, action);
+        listeners.forEach(listener => listener());
+      };
+      const subscribe = (listener) => {
+        listeners.push(listener);
+        return () => {
+          // Instead of implement unsubscribe method, return funtion to remove listener.
+          listeners = listeners.filter(l => l !== listener);
+        };
+      };
+      dispatch({});
+      return { getState, dispatch, subscribe };
+    };
+    const store = createStore2(counter);
+    const render = () => {
+      console.info(store.getState());
+    };
+
+    store.subscribe(render);
+
+    it('initial rendering', () => {
+      render();
+
+      assert.equal(store.getState(), 0);
+      assert.equal(console.info.callCount, 1);
+    });
+
+    it('dispatch call subscribed reducers', () => {
+      store.dispatch({ type: 'INCREMENT' });
+
+      assert.equal(store.getState(), 1);
+      assert.equal(console.info.callCount, 1);
+
+      store.dispatch({ type: 'DECREMENT' });
+
+      assert.equal(store.getState(), 0);
+      assert.equal(console.info.callCount, 2);
     });
   });
 });
