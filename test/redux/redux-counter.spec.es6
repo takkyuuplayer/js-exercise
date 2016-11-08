@@ -1,6 +1,9 @@
 import assert from 'power-assert';
 import { createStore } from 'redux';
 import sinon from 'sinon';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { mount, shallow } from 'enzyme';
 
 const counter = (prevState = 0, action) => {
   switch (action.type) {
@@ -112,5 +115,45 @@ describe('Redux', () => {
       assert.equal(store.getState(), 0);
       assert.equal(console.info.callCount, 2);
     });
+  });
+});
+
+describe('Count w/ React', () => {
+  const Counter = ( {
+    value,
+    onIncrement,
+    onDecrement
+  }) => (
+    <div>
+      <h1>{value}</h1>
+      <button id="increment" onClick={onIncrement}>+</button>
+      <button id="decrement" onClick={onDecrement}>-</button>
+    </div>
+  );
+  it('can increment/decrement', () => {
+    const onButtonClick = sinon.spy();
+    const store = createStore(counter);
+    let wrapper;
+    const render = () => {
+      wrapper = mount(<Counter
+        value={store.getState()}
+        onIncrement={ () => store.dispatch({type: 'INCREMENT' }) }
+        onDecrement={ () => store.dispatch({type: 'DECREMENT' }) }
+      />);
+    };
+    render();
+
+    store.subscribe(render);
+
+    assert.equal(wrapper.props().value, 0);
+
+    wrapper.find('button#increment').simulate('click');
+    wrapper.find('button#increment').simulate('click');
+
+    assert.equal(wrapper.props().value, 2);
+
+    wrapper.find('button#decrement').simulate('click');
+
+    assert.equal(wrapper.props().value, 1);
   });
 });
