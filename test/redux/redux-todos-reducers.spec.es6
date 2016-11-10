@@ -1,7 +1,6 @@
 import assert from 'power-assert';
 import Immutable from 'immutable';
 import { createStore } from 'redux';
-import { combineReducers } from 'redux-immutablejs';
 import { todo,  todos, visivilityFilter, todoApp } from '../../src/redux/todos-reducers.es6';
 
 describe("AddTodo", () => {
