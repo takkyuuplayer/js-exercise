@@ -1,7 +1,7 @@
 import assert from 'power-assert';
 import Immutable from 'immutable';
 import { createStore } from 'redux';
-import { todo,  todos, visivilityFilter, todoApp } from '../../src/redux/todos-reducers.es6';
+import { todo,  todos, visibilityFilter, todoApp } from '../../src/redux/todos-reducers.es6';
 
 describe("AddTodo", () => {
   const stateBefore = Immutable.List();
@@ -69,7 +69,7 @@ describe('combineReducers', () => {
           text: 'Learn Redux',
           completed: false
         }],
-        visivilityFilter: 'SHOW_ALL'
+        visibilityFilter: 'SHOW_ALL'
       });
 
       store.dispatch(Object.freeze({
@@ -91,7 +91,7 @@ describe('combineReducers', () => {
             completed: false
           }
         ],
-        visivilityFilter: 'SHOW_ALL'
+        visibilityFilter: 'SHOW_ALL'
       });
 
       store.dispatch(Object.freeze({
@@ -112,7 +112,7 @@ describe('combineReducers', () => {
             completed: true
           }
         ],
-        visivilityFilter: 'SHOW_ALL'
+        visibilityFilter: 'SHOW_ALL'
       });
 
       store.dispatch(Object.freeze({
@@ -133,7 +133,7 @@ describe('combineReducers', () => {
             completed: true
           }
         ],
-        visivilityFilter: 'SHOW_ACTIVE'
+        visibilityFilter: 'SHOW_ACTIVE'
       });
     });
   });
@@ -144,7 +144,7 @@ describe('combineReducers', () => {
         Immutable.Map({})
       );
     };
-    const todoApp2 = combineReducers2({todos, visivilityFilter});
+    const todoApp2 = combineReducers2({todos, visibilityFilter});
     const store = createStore(todoApp2);
     it('can combine reducers', () => {
       store.dispatch(Object.freeze({
@@ -159,7 +159,7 @@ describe('combineReducers', () => {
           text: 'Learn Redux',
           completed: false
         }],
-        visivilityFilter: 'SHOW_ALL'
+        visibilityFilter: 'SHOW_ALL'
       });
     });
   });

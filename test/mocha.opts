@@ -1,3 +1,3 @@
---require babel-register
+re babel-register
 --require jsdom-global/register
---compilers js:espower-babel/guess
+--compilers js:babel-register
