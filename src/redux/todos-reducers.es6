@@ -30,7 +30,7 @@ const todos = (state = Immutable.List(), action) => {
   }
 };
 
-const visivilityFilter = (state = 'SHOW_ALL', action) => {
+const visibilityFilter = (state = 'SHOW_ALL', action) => {
   switch (action.type) {
     case 'SET_VISIBILITY_FILTER':
       return action.filter;
@@ -39,7 +39,7 @@ const visivilityFilter = (state = 'SHOW_ALL', action) => {
   }
 };
 
-const todoApp = combineReducers({todos, visivilityFilter});
+const todoApp = combineReducers({todos, visibilityFilter});
 
-export { todo, todos, visivilityFilter, todoApp };
+export { todo, todos, visibilityFilter, todoApp };
 
