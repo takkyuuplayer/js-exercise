@@ -13,12 +13,14 @@ describe("TodoApp", () => {
     render() {
       return (
         <div>
+          <input ref={node => { this.input = node }} />
           <button onClick={() => {
             store.dispatch({
               type: 'Add_TODO',
-              text: 'Test',
+              text: this.input.value,
               id: nextTodoId++,
             });
+            this.input.value = '';
           }}>
             Add Todo
           </button>
@@ -46,12 +48,15 @@ describe("TodoApp", () => {
   });
 
   it('has a test todo item', () => {
+    wrapper.find('input').node.value = 'Test TODO';
     wrapper.find('button').simulate('click');
+
     assert.deepEqual(wrapper.props().todos.toJS(), [{
       completed: false,
-      text: 'Test',
+      text: 'Test TODO',
       id: 0
     }]);
+    assert.equal(wrapper.find('input').node.value, '');
   });
 });
 
