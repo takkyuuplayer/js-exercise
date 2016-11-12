@@ -5,6 +5,7 @@ import { createStore } from 'redux';
 import { todoApp } from '../../src/redux/todos-reducers.es6';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
+import { connect } from 'react-redux';
 
 const Link = ({
   active,
@@ -96,12 +97,12 @@ const TodoList = ({
   </ul>
 );
 
-const mapStateToProps = (state) => {
+const mapStateToTodoListProps = (state) => {
   return {
     todos: getVisibleTodos(state.get('todos'), state.get('visibilityFilter'))
   }
 };
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToTodoListProps = (dispatch) => {
   return {
     onTodoClick: (id) => dispatch(
       {
@@ -111,18 +112,17 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-import { connect } from 'react-redux';
 const VisibleTodoList = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToTodoListProps,
+  mapDispatchToTodoListProps
 )(TodoList);
 
-const AddTodo = (props, { store }) => {
+let AddTodo = ({dispatch})  => {
   let input;
   return (<div>
     <input ref={node => { input = node }} />
       <button onClick={() => {
-          store.dispatch({
+          dispatch({
             type: 'Add_TODO',
             id: nextTodoId++,
             text: input.value
@@ -135,9 +135,8 @@ const AddTodo = (props, { store }) => {
   </div>
   );
 };
-AddTodo.contextTypes = {
-  store: React.PropTypes.object
-}
+AddTodo = connect()(AddTodo);
+
 const Footer = ({
   visibilityFilter,
   onFilterClick
