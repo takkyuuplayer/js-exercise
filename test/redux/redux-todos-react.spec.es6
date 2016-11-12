@@ -5,8 +5,6 @@ import { createStore } from 'redux';
 import { todoApp } from '../../src/redux/todos-reducers.es6';
 import { mount } from 'enzyme';
 
-const store = createStore(todoApp);
-
 const Link = ({
   active,
   children,
@@ -24,6 +22,7 @@ const Link = ({
 
 class FilterLink extends React.Component {
   componentDidMount() {
+    const { store } = this.context;
     this.unsubscribe = store.subscribe(() =>
       this.forceUpdate()
     );
@@ -33,6 +32,7 @@ class FilterLink extends React.Component {
   }
   render() {
     const props = this.props;
+    const { store } = this.context;
     const state = store.getState();
 
     return (
@@ -49,6 +49,9 @@ class FilterLink extends React.Component {
     );
   }
 };
+FilterLink.contextTypes = {
+  store: React.PropTypes.object
+}
 const getVisibleTodos = (
   todos,
   filter
@@ -94,6 +97,7 @@ const TodoList = ({
 
 class VisibleTodoList extends React.Component {
   componentDidMount() {
+    const { store } = this.context;
     this.unsubscribe = store.subscribe(() =>
       this.forceUpdate()
     );
@@ -102,6 +106,7 @@ class VisibleTodoList extends React.Component {
     this.unsubscribe();
   }
   render() {
+    const { store } = this.context;
     const state = store.getState();
 
     return <TodoList
@@ -113,8 +118,11 @@ class VisibleTodoList extends React.Component {
     />
   }
 }
+VisibleTodoList.contextTypes = {
+  store: React.PropTypes.object
+}
 
-const AddTodo = () => {
+const AddTodo = (props, { store }) => {
   let input;
   return (<div>
     <input ref={node => { input = node }} />
@@ -132,6 +140,9 @@ const AddTodo = () => {
   </div>
   );
 };
+AddTodo.contextTypes = {
+  store: React.PropTypes.object
+}
 const Footer = ({
   visibilityFilter,
   onFilterClick
@@ -146,10 +157,7 @@ const Footer = ({
 );
 
 let nextTodoId = 0;
-const TodoApp = ({
-  todos,
-  visibilityFilter
-}) => (
+const TodoApp = () => (
   <div>
     <AddTodo />
     <VisibleTodoList />
@@ -157,17 +165,36 @@ const TodoApp = ({
   </div>
 );
 
+class Provider extends React.Component {
+  getChildContext() {
+    return {
+      store: this.props.store
+    }
+  }
+  render() {
+    return this.props.children;
+  }
+}
+Provider.childContextTypes = {
+  store: React.PropTypes.object
+};
+
 describe("TodoApp", () => {
 
   let wrapper;
+  const store = createStore(todoApp);
   const render = () => {
-    wrapper = mount(<TodoApp {...store.getState().toObject()} />);
+    wrapper = mount(
+      <Provider store={store}>
+        <TodoApp />
+      </Provider>
+    );
   };
   render();
   store.subscribe(render);
 
   it('has empty todos at first as property', () => {
-    assert.deepEqual(wrapper.props().todos.toJS(), []);
+    assert.deepEqual(store.getState().get('todos').toJS(), []);
   });
 
   it('has a test todo item', () => {
@@ -177,7 +204,7 @@ describe("TodoApp", () => {
     wrapper.find('input').node.value = 'Test TODO2';
     wrapper.find('button').simulate('click');
 
-    assert.deepEqual(wrapper.props().todos.toJS(), [{
+    assert.deepEqual(store.getState().get('todos').toJS(), [{
       completed: false,
       text: 'Test TODO',
       id: 0
@@ -193,7 +220,7 @@ describe("TodoApp", () => {
   it('can toggle status of item', () => {
     wrapper.find('li').first().simulate('click');
 
-    assert.deepEqual(wrapper.props().todos.toJS(), [{
+    assert.deepEqual(store.getState().get('todos').toJS(), [{
       completed: true,
       text: 'Test TODO',
       id: 0
