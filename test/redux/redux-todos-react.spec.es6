@@ -7,21 +7,48 @@ import { mount } from 'enzyme';
 
 const store = createStore(todoApp);
 
-const FilterLink = ({
-  filter,
-  currentFilter,
+const Link = ({
+  active,
   children,
   onClick
-}) => filter === currentFilter ?
+}) => active ?
   <span>{children}</span>
   : (
   <a href="#" onClick={e => {
     e.preventDefault();
-    onClick(filter)
+    onClick()
   }} >
   {children}
   </a>
 );
+
+class FilterLink extends React.Component {
+  componentDidMount() {
+    this.unsubscribe = store.subscribe(() =>
+      this.forceUpdate()
+    );
+  }
+  componentWilUnmount() {
+    this.unsubscribe();
+  }
+  render() {
+    const props = this.props;
+    const state = store.getState();
+
+    return (
+      <Link
+        active={props.filter === state.visibilityFilter}
+        onClick={() =>
+          store.dispatch({
+            type: 'SET_VISIBILITY_FILTER',
+            filter: props.filter
+          })
+        }>
+        {props.children}
+      </Link>
+    );
+  }
+};
 const getVisibleTodos = (
   todos,
   filter
@@ -87,9 +114,9 @@ const Footer = ({
   <p>
     Show:
     { ' ' }
-    <FilterLink onClick={onFilterClick} currentFilter={visibilityFilter} filter="SHOW_ALL">ALL</FilterLink>
-    <FilterLink onClick={onFilterClick} currentFilter={visibilityFilter} filter="SHOW_ACTIVE">Active</FilterLink>
-    <FilterLink onClick={onFilterClick} currentFilter={visibilityFilter} filter="SHOW_COMPLETED">Completed</FilterLink>
+    <FilterLink filter="SHOW_ALL">ALL</FilterLink>
+    <FilterLink filter="SHOW_ACTIVE">Active</FilterLink>
+    <FilterLink filter="SHOW_COMPLETED">Completed</FilterLink>
   </p>
 );
 
@@ -115,15 +142,7 @@ const TodoApp = ({
         id
       }) }
     />
-    <Footer
-      visibilityFilter={visibilityFilter}
-      onFilterClick={ filter =>
-        store.dispatch({
-          type: 'SET_VISIBILITY_FILTER',
-          filter
-        })
-      }
-    />
+    <Footer />
   </div>
 );
 
