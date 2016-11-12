@@ -92,16 +92,41 @@ const TodoList = ({
   </ul>
 );
 
-const AddTodo = ({
-  onAddClick
-}) => {
+class VisibleTodoList extends React.Component {
+  componentDidMount() {
+    this.unsubscribe = store.subscribe(() =>
+      this.forceUpdate()
+    );
+  }
+  componentWilUnmount() {
+    this.unsubscribe();
+  }
+  render() {
+    const state = store.getState();
+
+    return <TodoList
+      todos={getVisibleTodos(state.get('todos'), state.get('visibilityFilter'))}
+      onTodoClick={(id) => store.dispatch({
+        type: 'Toggle_TODO',
+        id
+      }) }
+    />
+  }
+}
+
+const AddTodo = () => {
   let input;
   return (<div>
     <input ref={node => { input = node }} />
       <button onClick={() => {
-        onAddClick(input.value);
-        input.value = '';
-      }}>
+          store.dispatch({
+            type: 'Add_TODO',
+            id: nextTodoId++,
+            text: input.value
+          })
+          input.value = '';
+        }
+      }>
       Add Todo
       </button>
   </div>
@@ -126,22 +151,8 @@ const TodoApp = ({
   visibilityFilter
 }) => (
   <div>
-    <AddTodo
-      onAddClick={text =>
-        store.dispatch({
-          type: 'Add_TODO',
-          id: nextTodoId++,
-          text: text
-        })
-      }
-    />
-    <TodoList
-      todos={getVisibleTodos(todos, visibilityFilter)}
-      onTodoClick={(id) => store.dispatch({
-        type: 'Toggle_TODO',
-        id
-      }) }
-    />
+    <AddTodo />
+    <VisibleTodoList />
     <Footer />
   </div>
 );
