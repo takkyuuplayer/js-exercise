@@ -4,6 +4,7 @@ import React from 'react';
 import { createStore } from 'redux';
 import { todoApp } from '../../src/redux/todos-reducers.es6';
 import { mount } from 'enzyme';
+import { Provider } from 'react-redux';
 
 const Link = ({
   active,
@@ -164,20 +165,6 @@ const TodoApp = () => (
     <Footer />
   </div>
 );
-
-class Provider extends React.Component {
-  getChildContext() {
-    return {
-      store: this.props.store
-    }
-  }
-  render() {
-    return this.props.children;
-  }
-}
-Provider.childContextTypes = {
-  store: React.PropTypes.object
-};
 
 describe("TodoApp", () => {
 
