@@ -22,38 +22,28 @@ const Link = ({
   </a>
 );
 
-class FilterLink extends React.Component {
-  componentDidMount() {
-    const { store } = this.context;
-    this.unsubscribe = store.subscribe(() =>
-      this.forceUpdate()
-    );
-  }
-  componentWilUnmount() {
-    this.unsubscribe();
-  }
-  render() {
-    const props = this.props;
-    const { store } = this.context;
-    const state = store.getState();
-
-    return (
-      <Link
-        active={props.filter === state.visibilityFilter}
-        onClick={() =>
-          store.dispatch({
-            type: 'SET_VISIBILITY_FILTER',
-            filter: props.filter
-          })
-        }>
-        {props.children}
-      </Link>
-    );
+const mapStateToLinkProps = (state, ownProps) => {
+  return {
+    active: state.get('visibilityFilter') === ownProps.filter
   }
 };
-FilterLink.contextTypes = {
-  store: React.PropTypes.object
-}
+const mapDispatchToLinkProps = (dispatch, ownProps) => {
+  return {
+    onClick: () => {
+      dispatch(
+      {
+        type: 'SET_VISIBILITY_FILTER',
+        filter:ownProps.filter
+      })
+    }
+  }
+};
+
+const FilterLink = connect(
+  mapStateToLinkProps,
+  mapDispatchToLinkProps
+)(Link);
+
 const getVisibleTodos = (
   todos,
   filter
@@ -217,13 +207,13 @@ describe("TodoApp", () => {
     });
 
     it('can show completed todos', () => {
-      wrapper.find('FilterLink').at(1).simulate('click');
+      wrapper.find('Link').at(1).simulate('click');
       assert.equal(wrapper.find('li').length, 1);
       assert.equal(wrapper.find('li').text(), 'Test TODO2');
     });
 
     it('can show active todos', () => {
-      wrapper.find('FilterLink').at(2).simulate('click');
+      wrapper.find('Link').at(2).simulate('click');
       assert.equal(wrapper.find('li').length, 1);
       assert.equal(wrapper.find('li').text(), 'Test TODO');
     });
