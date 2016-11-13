@@ -1,7 +1,10 @@
 language: node_js
+cache:
+  directories:
+    - node_modules
 node_js:
   - "6"
 before_install:
-  - npm install --globale yarn
+  - npm install --global yarn
 install:
   - make
