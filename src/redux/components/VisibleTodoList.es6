@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TodoList from './TodoList.es6';
+import { toggleTodo } from '../actions/index.es6';
 
 const getVisibleTodos = (
   todos,
@@ -23,12 +24,6 @@ const getVisibleTodos = (
 const mapStateToTodoListProps = (state) => {
   return {
     todos: getVisibleTodos(state.get('todos'), state.get('visibilityFilter'))
-  }
-};
-const toggleTodo = (id) => {
-  return {
-    type: 'Toggle_TODO',
-    id
   }
 };
 const mapDispatchToTodoListProps = (dispatch) => {

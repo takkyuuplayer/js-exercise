@@ -1,13 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Link from './Link.es6';
-
-const setVisibilityFilter = (filter) => {
-  return {
-    type: 'SET_VISIBILITY_FILTER',
-    filter:filter
-  }
-};
+import { setVisibilityFilter } from '../actions/index.es6';
 
 const mapStateToLinkProps = (state, ownProps) => {
   return {
