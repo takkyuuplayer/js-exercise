@@ -4,7 +4,7 @@
   "description": "ES6 exercise",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/**/*.spec.es6"
+    "test": "mocha **/*.spec.es6"
   },
   "repository": {
     "type": "git",
