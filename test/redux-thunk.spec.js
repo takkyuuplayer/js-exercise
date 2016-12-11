@@ -26,7 +26,7 @@ function increment() {
 
 function incrementAsync() {
   return dispatch => (
-    new Promise((resolve, reject) =>
+    new Promise(resolve =>
       setTimeout(() => {
         dispatch(increment());
         resolve();

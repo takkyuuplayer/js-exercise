@@ -7,7 +7,7 @@ setup:
 	yarn upgrade
 
 test:
-	npm run test:script
+	yarn run test
 
 upgrade:
 	yarn upgrade
