@@ -6,11 +6,10 @@ setup:
 	yarn install
 
 test:
-	npm run test
+	npm run test:script
 
 upgrade:
 	yarn upgrade
 
 lint:
-	$(shell npm bin)/eslint --fix src
-	$(shell npm bin)/eslint --fix test
+	$(shell npm bin)/eslint --fix src test
