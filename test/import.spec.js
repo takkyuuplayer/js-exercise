@@ -1,11 +1,11 @@
 import assert from 'power-assert'
 
-import { one, two } from '../src/export.es6';
-import { ONE, TWO } from '../src/export.es6';
-import { ichi, ni, san} from '../src/export.es6';
-import three from '../src/export.es6';
+import { one, two } from '../src/export.js';
+import { ONE, TWO } from '../src/export.js';
+import { ichi, ni, san} from '../src/export.js';
+import three from '../src/export.js';
 
-import def, * as exported from '../src/export.es6';
+import def, * as exported from '../src/export.js';
 
 describe('import', () => {
   it('can import exported object', () => {

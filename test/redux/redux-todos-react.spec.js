@@ -5,8 +5,8 @@ import { createStore } from 'redux';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 
-import todoApp from '../../src/redux/reducers/index.es6';
-import TodoApp from '../../src/redux/components/TodoApp.es6';
+import todoApp from '../../src/redux/reducers/index.js';
+import TodoApp from '../../src/redux/components/TodoApp.js';
 
 describe("TodoApp", () => {
 

@@ -1,7 +1,7 @@
 import assert from 'power-assert';
 import Immutable from 'immutable';
 import { createStore } from 'redux';
-import { todo,  todos, visibilityFilter, todoApp } from '../../src/redux/todos-reducers.es6';
+import { todo,  todos, visibilityFilter, todoApp } from '../../src/redux/todos-reducers.js';
 
 describe("AddTodo", () => {
   const stateBefore = Immutable.List();

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux-immutablejs';
-import todos from './todos.es6';
-import visibilityFilter from './visibilityFilter.es6';
+import todos from './todos.js';
+import visibilityFilter from './visibilityFilter.js';
 
 const todoApp = combineReducers({
   todos,
-  visibilityFilter
-})
+  visibilityFilter,
+});
 
 export default todoApp;

@@ -6,14 +6,14 @@ const todo = (state, action) => {
       return Immutable.Map({
         id: action.id,
         text: action.text,
-        completed: false
+        completed: false,
       });
- case 'Toggle_TODO':
-   return state.get('id') === action.id
-     ?  state.set('completed', !state.get('completed'))
+    case 'Toggle_TODO':
+      return state.get('id') === action.id
+     ? state.set('completed', !state.get('completed'))
      : state;
- default:
-   return state;
+    default:
+      return state;
   }
 };
 
@@ -22,7 +22,7 @@ const todos = (state = Immutable.List(), action) => {
     case 'Add_TODO':
       return state.push(todo(undefined, action));
     case 'Toggle_TODO':
-      return state.map((t) => todo(t, action));
+      return state.map(t => todo(t, action));
     default:
       return state;
   }

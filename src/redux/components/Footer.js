@@ -1,9 +1,9 @@
 import React from 'react';
-import FilterLink from './FilterLink.es6';
+import FilterLink from './FilterLink.js';
 
 const Footer = ({
   visibilityFilter,
-  onFilterClick
+  onFilterClick,
 }) => (
   <p>
     Show:
