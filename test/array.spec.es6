@@ -31,6 +31,32 @@ describe('Array', () => {
       assert.deepStrictEqual(arr.slice(-4), [1,2,3]);
 
       assert.deepStrictEqual(arr, [1, 2, 3]);
+
+      assert.deepStrictEqual(arr.slice(0,0), []);
+    });
+  });
+
+  describe('.concat', () => {
+    it('return combined array', () => {
+      const arr = [1, 2, 3];
+
+      assert.deepStrictEqual(arr.concat([4]), [1,2,3,4]);
+      assert.deepStrictEqual(arr, [1,2,3]);
+    });
+
+    it('combining is done by shallow copy', () => {
+      const arr = [
+        [1, 2, 3],
+        [4, 5, 6],
+      ];
+      let arr2 = arr.concat([[7,8,9]]);
+
+      assert.deepStrictEqual(arr2, [ [1,2,3], [4,5,6], [7,8,9]]);
+
+      arr2[1][1] = 100;
+
+      assert.deepStrictEqual(arr, [ [1,2,3], [4,100,6]]);
+      assert.deepStrictEqual(arr2, [ [1,2,3], [4,100,6], [7,8,9]]);
     });
   });
 });
