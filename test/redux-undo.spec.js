@@ -1,7 +1,7 @@
 import assert from 'power-assert';
 
 import { createStore, combineReducers } from 'redux';
-import undoable from 'redux-undo';
+import undoable, { ActionCreators } from 'redux-undo';
 
 function counter(state = 0, action) {
   switch (action.type) {
@@ -19,7 +19,7 @@ describe('redux-undo', () => {
     const reducer = combineReducers({
       counter: undoable(counter),
     });
-    const store = createStore(reducer);
+    let store = createStore(reducer);
 
     it('will change state to manage history', () => {
       assert.deepStrictEqual(store.getState(), {
@@ -57,6 +57,63 @@ describe('redux-undo', () => {
           },
         },
       });
+    });
+  });
+
+  describe('ActionCreators', () => {
+    const reducer = combineReducers({
+      counter: undoable(counter),
+    });
+    let store = createStore(reducer);
+
+    store.dispatch({type:'INCREMENT'});
+    store.dispatch({type:'INCREMENT'});
+    store.dispatch({type:'INCREMENT'});
+
+    it('can dispatch undo', () => {
+      assert.strictEqual(store.getState().counter.present, 3);
+
+      store.dispatch(ActionCreators.undo());
+
+      assert.strictEqual(store.getState().counter.present, 2);
+
+      store.dispatch(ActionCreators.undo());
+      store.dispatch(ActionCreators.undo());
+
+      assert.strictEqual(store.getState().counter.present, 0);
+
+      store.dispatch(ActionCreators.undo());
+
+      assert.strictEqual(store.getState().counter.present, 0);
+    });
+
+    it('can dispatch redo', () => {
+      store.dispatch(ActionCreators.redo());
+
+      assert.strictEqual(store.getState().counter.present, 1);
+
+      store.dispatch(ActionCreators.redo());
+      store.dispatch(ActionCreators.redo());
+
+      assert.strictEqual(store.getState().counter.present, 3);
+
+      store.dispatch(ActionCreators.redo());
+
+      assert.strictEqual(store.getState().counter.present, 3);
+    });
+
+    it('can jump to past', () => {
+      store.dispatch(ActionCreators.jumpToPast(1));
+
+      assert.strictEqual(store.getState().counter.present, 1);
+
+      store.dispatch(ActionCreators.jumpToPast(5));
+
+      assert.strictEqual(store.getState().counter.present, undefined);
+
+      store.dispatch(ActionCreators.jumpToPast(0));
+
+      assert.strictEqual(store.getState().counter.present, 0);
     });
   });
 });
