@@ -1,15 +1,15 @@
-let one = 1,
-  two = 2,
-  three = 3;
+const one = 1;
+const two = 2;
+const three = 3;
 
 export { one, two };
 export { one as ONE, two as TWO };
 
-export let ichi = 1,
-  ni,
-  san = three;
+export const ichi = 1;
+export const ni = undefined;
+export const san = three;
 
 export default three;
 
-export const a = 1,
-  b = 2;
+export const a = 1;
+export const b = 2;

@@ -2,23 +2,15 @@ import React from 'react';
 import assert from 'power-assert';
 import { shallow } from 'enzyme';
 
-class Foo extends React.Component {
-  render() {
-    return (
-      <div className="foo" />
-    );
-  }
-}
-class Bar extends React.Component {
-  render() {
-    return (
-      <div>
-        <Foo />
-        <Foo />
-      </div>
-    );
-  }
-}
+const Foo = () => (
+  <div className="foo" />
+);
+const Bar = () => (
+  <div>
+    <Foo />
+    <Foo />
+  </div>
+);
 
 
 describe('Foo', () => {

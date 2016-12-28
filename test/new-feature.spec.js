@@ -10,7 +10,7 @@ describe('Constant', () => {
 describe('Scope', () => {
   describe('let', () => {
     const callbacks = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i += 1) {
       callbacks[i] = () => i * 2;
     }
     it('has block scope', () => {
@@ -18,23 +18,6 @@ describe('Scope', () => {
       assert.equal(callbacks[1](), 2);
       assert.equal(callbacks[2](), 4);
     });
-  });
-  describe('Block Scope', () => {
-    {
-      function foo() { return 1; }
-      it('1st time', () => {
-        assert.equal(foo(), 1);
-      });
-      {
-        function foo() { return 2; }
-        it('2nd time', () => {
-          assert.equal(foo(), 2);
-        });
-      }
-      it('does not overwrite 1st time', () => {
-        assert.equal(foo(), 1);
-      });
-    }
   });
 });
 describe('Allow functions', () => {
@@ -59,7 +42,7 @@ describe('Allow functions', () => {
   describe('this object', () => {
     const self = this;
     it('this object will not changed', () => {
-      evens.forEach((v) => {
+      evens.forEach(() => {
         assert.equal(self, this);
       });
     });
@@ -108,34 +91,6 @@ Nice to meet you!`;
       assert.equal(string, 'Hello Foo.\nNice to meet you!');
     });
   });
-  describe('Custom Interpolation', () => {
-    function test(a, b, c) {
-      it('expand parameters', () => {
-        assert.deepEqual(a, ['http://example.com/foo?bar=', '&quux=', '']);
-        assert.deepEqual(b, 3);
-        assert.deepEqual(c, 'quux');
-      });
-    }
-    const bar = 1;
-    const baz = 2;
-    const quux = 'quux';
-    test `http://example.com/foo?bar=${bar + baz}&quux=${quux}`;
-  });
-  describe('Raw String Access', () => {
-    function test(strings, val1) {
-      it('raw access', () => {
-        assert.deepEqual(strings, ['foo\n', 'bar']);
-        assert.equal(strings.raw[0], 'foo\\n');
-        assert.equal(strings.raw[1], 'bar');
-        assert.equal(val1, 42);
-      });
-    }
-    test `foo\n${42}bar`;
-
-    it('String.raw can show raw string', () => {
-      assert.equal(String.raw `foo\n${42}bar`, 'foo\\n42bar');
-    });
-  });
 });
 
 describe('Enhanced Object Properties', () => {
@@ -151,8 +106,8 @@ describe('Enhanced Object Properties', () => {
   });
   it('can set method', () => {
     const obj = {
-      sum(a, b) {
-        return a + b;
+      sum(x, y) {
+        return x + y;
       },
     };
     assert.equal(obj.sum(5, 8), 13);
@@ -175,17 +130,18 @@ describe('Destructuring Assignment', () => {
     });
 
     it('can have default values for destruction', () => {
-      let [a = 10, b = 11, c = 12, d = 14, e] = list;
-      assert.equal(a, 1);
-      assert.equal(b, 2);
-      assert.equal(d, 14);
-      assert.equal(e, undefined);
+      const [x = 10, y = 11, z = 12, l = 14, m] = list;
+      assert.equal(x, 1);
+      assert.equal(y, 2);
+      assert.equal(z, 3);
+      assert.equal(l, 14);
+      assert.equal(m, undefined);
     });
   });
 
   describe('Object', () => {
     it('can be destructed into indivisual variables', () => {
-      let { a, b, c } = { a: 1, b: 2, c: 3 };
+      const { a, b, c } = { a: 1, b: 2, c: 3 };
       assert.equal(a, 1);
       assert.equal(b, 2);
       assert.equal(c, 3);

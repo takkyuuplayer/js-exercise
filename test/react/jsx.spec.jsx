@@ -1,14 +1,10 @@
 import assert from 'power-assert';
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 
-class Foo extends React.Component {
-  render() {
-    return (
-      <div className="foo" />
-    );
-  }
-}
+const Foo = (
+  <div className="foo" />
+);
 
 describe('Spread properties', () => {
   const props = {

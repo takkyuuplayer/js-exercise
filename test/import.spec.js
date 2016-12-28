@@ -1,11 +1,10 @@
 import assert from 'power-assert';
 
-import { one, two } from '../src/export.js';
-import { ONE, TWO } from '../src/export.js';
-import { ichi, ni, san } from '../src/export.js';
-import three from '../src/export.js';
-
-import def, * as exported from '../src/export.js';
+import three, {
+  one, two,
+  ONE, TWO,
+  ichi, ni, san,
+} from '../src/export';
 
 describe('import', () => {
   it('can import exported object', () => {
@@ -26,25 +25,5 @@ describe('import', () => {
 
   it('can import exported default values', () => {
     assert.equal(three, 3);
-  });
-
-  it('can import default and *', () => {
-    assert.equal(def, 3);
-    assert.deepEqual(exported, {
-      one: 1,
-      two: 2,
-
-      ONE: 1,
-      TWO: 2,
-
-      ichi: 1,
-      ni: undefined,
-      san: 3,
-
-      default: 3,
-
-      a: 1,
-      b: 2,
-    });
   });
 });

@@ -1,9 +1,10 @@
 let nextId = 0;
 
 export function addTodo(text) {
+  nextId += 1;
   return {
     type: 'ADD_TODO',
-    id: nextId++,
+    id: nextId,
     text,
   };
 }

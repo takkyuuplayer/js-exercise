@@ -10,6 +10,8 @@ function todo(state = {}, action) {
       return state.id === action.id
           ? Object.assign({}, state, { completed: !todo.completed })
           : state;
+    default:
+      return state;
   }
 }
 

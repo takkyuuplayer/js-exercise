@@ -1,6 +1,7 @@
 import assert from 'power-assert';
 
 describe('Array', () => {
+
   it('fill in empty for over range', () => {
     let arr = [0, 1, 2];
     arr[5] = 5;
