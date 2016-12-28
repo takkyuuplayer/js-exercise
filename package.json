@@ -9,8 +9,8 @@
     "test:lint": "eslint src test",
     "test:script": "mocha **/*.spec.js",
     "start": "./node_modules/.bin/http-server -t public/",
-    "webpack": "webpack",
-    "webpack:watch": "webpack --watch"
+    "webpack": "webpack --display-error-details",
+    "webpack:watch": "webpack --watch --display-error-details"
   },
   "repository": {
     "type": "git",

@@ -3,21 +3,23 @@ const output_dir = path.join(__dirname, './public/redux/js');
 
 module.exports = {
   entry: {
-    reduxCounter: './src/redux/counter/index.js'
+    reduxCounter: path.join(__dirname, './src/redux/counter/index.js'),
+    reduxTodos:   path.join(__dirname, './src/redux/todos/index.js'),
   },
   output: {
     path: output_dir,
     filename: '[name].bundle.js'
   },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
   module: {
     loaders: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?/,
         loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'react']
-        }
-      },
+        presets: ['es2015', 'react']
+      }
     ]
   },
   devtool: "source-map",
