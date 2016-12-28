@@ -9,7 +9,7 @@ const getVisibleTodos = (todos, filter) => {
       return todos;
     case 'SHOW_COMPLETED':
       return todos.filter(todo => todo.completed);
-    case 'SHOW__ACTIVE':
+    case 'SHOW_ACTIVE':
       return todos.filter(todo => !todo.completed);
     default:
       throw new Error('Unkown error')
@@ -19,7 +19,7 @@ const getVisibleTodos = (todos, filter) => {
 const mapStateToProps = (state) => ({
   todos: getVisibleTodos(state.todos, state.visibilityFilter),
 });
-const mapDispatchToProps = () => ({
+const mapDispatchToProps = ({
   onTodoClick: toggleTodo,
 });
 

@@ -3,8 +3,8 @@ const output_dir = path.join(__dirname, './public/redux/js');
 
 module.exports = {
   entry: {
-    reduxCounter: path.join(__dirname, './src/redux/counter/index.js'),
-    reduxTodos:   path.join(__dirname, './src/redux/todos/index.js'),
+    reduxCounter: path.join(__dirname, './src/redux/counter/index.jsx'),
+    reduxTodos:   path.join(__dirname, './src/redux/todos/index.jsx'),
   },
   output: {
     path: output_dir,
