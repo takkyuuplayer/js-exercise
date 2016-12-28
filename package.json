@@ -4,10 +4,13 @@
   "description": "ES6 exercise",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint --fix src test",
     "test": "npm run test:script; npm run test:lint",
-    "test:script": "mocha **/*.spec.js",
     "test:lint": "eslint src test",
-    "lint": "eslint --fix src test"
+    "test:script": "mocha **/*.spec.js",
+    "start": "./node_modules/.bin/http-server -t public/",
+    "webpack": "webpack",
+    "webpack:watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
