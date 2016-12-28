@@ -6,7 +6,8 @@
   "scripts": {
     "test": "npm run test:script; npm run test:lint",
     "test:script": "mocha **/*.spec.js",
-    "test:lint": "eslint src test"
+    "test:lint": "eslint src test",
+    "lint": "eslint --fix src test"
   },
   "repository": {
     "type": "git",

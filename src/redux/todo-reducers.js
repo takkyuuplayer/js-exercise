@@ -7,21 +7,21 @@ import {
   VisivilityFilters,
 } from './todo-actions';
 
-function todos (state = [], action) {
-  switch(action.type) {
+function todos(state = [], action) {
+  switch (action.type) {
     case ADD_TODO:
       return [
-          ...state,
-          {
-            text: action.text,
-            completed: false,
-          }
-        ];
+        ...state,
+        {
+          text: action.text,
+          completed: false,
+        },
+      ];
     case TOGGLE_TODO:
       return state.map((todo, index) =>
           index === action.index
             ? Object.assign({}, todo, { completed: !todo.completed })
-            : todo
+            : todo,
       );
 
     default:
@@ -29,8 +29,8 @@ function todos (state = [], action) {
   }
 }
 
-function visibilityFilter (state = VisivilityFilters.SHOW_ALL, action) {
-  switch(action.type) {
+function visibilityFilter(state = VisivilityFilters.SHOW_ALL, action) {
+  switch (action.type) {
     case SET_VISIBILITY_FILTER:
       return action.filter;
     default:

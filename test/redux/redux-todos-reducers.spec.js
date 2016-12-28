@@ -1,21 +1,21 @@
 import assert from 'power-assert';
 import Immutable from 'immutable';
 import { createStore } from 'redux';
-import { todo,  todos, visibilityFilter, todoApp } from '../../src/redux/todos-reducers.js';
+import { todo, todos, visibilityFilter, todoApp } from '../../src/redux/todos-reducers.js';
 
-describe("AddTodo", () => {
+describe('AddTodo', () => {
   const stateBefore = Immutable.List();
   const action = Object.freeze({
     type: 'Add_TODO',
     id: 0,
-    text: 'Learn Redux'
+    text: 'Learn Redux',
   });
 
   it('can add todo item', () => {
     assert.deepEqual(todos(stateBefore, action).toJS(), [{
       id: 0,
       text: 'Learn Redux',
-      completed: false
+      completed: false,
     }]);
   });
 });
@@ -31,11 +31,11 @@ describe('ToggleTodo', () => {
       id: 1,
       text: 'Go shopping',
       completed: true,
-    }
+    },
   ]);
   const action = Object.freeze({
     type: 'Toggle_TODO',
-    id: 1
+    id: 1,
   });
 
   it('can toggle completed status', () => {
@@ -60,22 +60,22 @@ describe('combineReducers', () => {
       store.dispatch(Object.freeze({
         type: 'Add_TODO',
         id: 0,
-        text: 'Learn Redux'
+        text: 'Learn Redux',
       }));
 
       assert.deepEqual(store.getState().toJS(), {
         todos: [{
           id: 0,
           text: 'Learn Redux',
-          completed: false
+          completed: false,
         }],
-        visibilityFilter: 'SHOW_ALL'
+        visibilityFilter: 'SHOW_ALL',
       });
 
       store.dispatch(Object.freeze({
         type: 'Add_TODO',
         id: 1,
-        text: 'Go shopping'
+        text: 'Go shopping',
       }));
 
       assert.deepEqual(store.getState().toJS(), {
@@ -83,15 +83,15 @@ describe('combineReducers', () => {
           {
             id: 0,
             text: 'Learn Redux',
-            completed: false
+            completed: false,
           },
           {
             id: 1,
             text: 'Go shopping',
-            completed: false
-          }
+            completed: false,
+          },
         ],
-        visibilityFilter: 'SHOW_ALL'
+        visibilityFilter: 'SHOW_ALL',
       });
 
       store.dispatch(Object.freeze({
@@ -104,15 +104,15 @@ describe('combineReducers', () => {
           {
             id: 0,
             text: 'Learn Redux',
-            completed: false
+            completed: false,
           },
           {
             id: 1,
             text: 'Go shopping',
-            completed: true
-          }
+            completed: true,
+          },
         ],
-        visibilityFilter: 'SHOW_ALL'
+        visibilityFilter: 'SHOW_ALL',
       });
 
       store.dispatch(Object.freeze({
@@ -125,41 +125,39 @@ describe('combineReducers', () => {
           {
             id: 0,
             text: 'Learn Redux',
-            completed: false
+            completed: false,
           },
           {
             id: 1,
             text: 'Go shopping',
-            completed: true
-          }
+            completed: true,
+          },
         ],
-        visibilityFilter: 'SHOW_ACTIVE'
+        visibilityFilter: 'SHOW_ACTIVE',
       });
     });
   });
   describe('combineReducers from scratch', () => {
-    const combineReducers2 = (reducers) => {
-      return (state = Immutable.Map({}), action) => Object.keys(reducers).reduce(
+    const combineReducers2 = reducers => (state = Immutable.Map({}), action) => Object.keys(reducers).reduce(
         (nextState, key) => nextState.set(key, reducers[key](state.get(key), action)),
-        Immutable.Map({})
+        Immutable.Map({}),
       );
-    };
-    const todoApp2 = combineReducers2({todos, visibilityFilter});
+    const todoApp2 = combineReducers2({ todos, visibilityFilter });
     const store = createStore(todoApp2);
     it('can combine reducers', () => {
       store.dispatch(Object.freeze({
         type: 'Add_TODO',
         id: 0,
-        text: 'Learn Redux'
+        text: 'Learn Redux',
       }));
 
       assert.deepEqual(store.getState().toJS(), {
         todos: [{
           id: 0,
           text: 'Learn Redux',
-          completed: false
+          completed: false,
         }],
-        visibilityFilter: 'SHOW_ALL'
+        visibilityFilter: 'SHOW_ALL',
       });
     });
   });

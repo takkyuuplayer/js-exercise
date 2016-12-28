@@ -10,7 +10,8 @@ class Person {
   }
 }
 
-describe('Person', () => { const alice = new Person('alice', 3);
+describe('Person', () => {
+  const alice = new Person('alice', 3);
   it('#getAge', () => {
     assert(alice.getAge() === 3);
   });

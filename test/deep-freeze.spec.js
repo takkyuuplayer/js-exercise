@@ -1,9 +1,9 @@
 import assert from 'power-assert';
 import deepFreeze from 'deep-freeze';
 
-describe("freeze", () => {
+describe('freeze', () => {
   const list = [{
-    a: 1
+    a: 1,
   }];
   Object.freeze(list);
 
@@ -13,7 +13,7 @@ describe("freeze", () => {
       assert(false);
     } catch (e) {
       assert('Exception to update freezed object');
-    };
+    }
   });
   it('can not freeze inner objects', () => {
     try {
@@ -21,13 +21,13 @@ describe("freeze", () => {
       assert('cannot freeze!');
     } catch (e) {
       assert(false);
-    };
+    }
   });
 });
 
-describe("deepFreeze", () => {
+describe('deepFreeze', () => {
   const list = [{
-    a: 1
+    a: 1,
   }];
   deepFreeze(list);
 
@@ -37,7 +37,7 @@ describe("deepFreeze", () => {
       assert(false);
     } catch (e) {
       assert('Freezed');
-    };
+    }
   });
   it('can freeze inner objects', () => {
     try {
@@ -45,6 +45,6 @@ describe("deepFreeze", () => {
       assert(false);
     } catch (e) {
       assert('Freezed');
-    };
+    }
   });
 });

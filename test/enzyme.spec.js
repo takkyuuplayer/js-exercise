@@ -1,5 +1,5 @@
 import React from 'react';
-import assert from 'power-assert'
+import assert from 'power-assert';
 import { shallow } from 'enzyme';
 
 class Foo extends React.Component {
@@ -16,13 +16,13 @@ class Bar extends React.Component {
         <Foo />
         <Foo />
       </div>
-    )
+    );
   }
 }
 
 
-describe("Foo", () => {
-  it("contains div.foo", () => {
+describe('Foo', () => {
+  it('contains div.foo', () => {
     const wrapper = shallow(<Foo />);
     assert.equal(wrapper.find('div.foo').length, 1);
   });

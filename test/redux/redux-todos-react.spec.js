@@ -8,15 +8,14 @@ import { Provider } from 'react-redux';
 import todoApp from '../../src/redux/reducers/index.js';
 import TodoApp from '../../src/redux/components/TodoApp.js';
 
-describe("TodoApp", () => {
-
+describe('TodoApp', () => {
   let wrapper;
   const store = createStore(todoApp);
   const render = () => {
     wrapper = mount(
       <Provider store={store}>
         <TodoApp />
-      </Provider>
+      </Provider>,
     );
   };
   render();
@@ -36,11 +35,11 @@ describe("TodoApp", () => {
     assert.deepEqual(store.getState().get('todos').toJS(), [{
       completed: false,
       text: 'Test TODO',
-      id: 0
+      id: 0,
     }, {
       completed: false,
       text: 'Test TODO2',
-      id: 1
+      id: 1,
     }]);
 
     assert.equal(wrapper.find('input').node.value, '');
@@ -52,11 +51,11 @@ describe("TodoApp", () => {
     assert.deepEqual(store.getState().get('todos').toJS(), [{
       completed: true,
       text: 'Test TODO',
-      id: 0
+      id: 0,
     }, {
       completed: false,
       text: 'Test TODO2',
-      id: 1
+      id: 1,
     }]);
   });
 

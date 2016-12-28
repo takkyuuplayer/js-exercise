@@ -16,19 +16,19 @@ const counter = (prevState = 0, action) => {
   }
 };
 
-describe("reducer", () => {
+describe('reducer', () => {
   it('can INCREMENT/DECREMENT', () => {
-    assert.equal(counter(0, { type: "INCREMENT" }), 1);
-    assert.equal(counter(1, { type: "INCREMENT" }), 2);
-    assert.equal(counter(2, { type: "INCREMENT" }), 3);
+    assert.equal(counter(0, { type: 'INCREMENT' }), 1);
+    assert.equal(counter(1, { type: 'INCREMENT' }), 2);
+    assert.equal(counter(2, { type: 'INCREMENT' }), 3);
 
-    assert.equal(counter(3, { type: "DECREMENT" }), 2);
-    assert.equal(counter(2, { type: "DECREMENT" }), 1);
-    assert.equal(counter(1, { type: "DECREMENT" }), 0);
+    assert.equal(counter(3, { type: 'DECREMENT' }), 2);
+    assert.equal(counter(2, { type: 'DECREMENT' }), 1);
+    assert.equal(counter(1, { type: 'DECREMENT' }), 0);
 
-    assert.equal(counter(100, { type: "NOT_DEFINED_METHOD" }), 100);
+    assert.equal(counter(100, { type: 'NOT_DEFINED_METHOD' }), 100);
 
-    assert.equal(counter(undefined, { type: "DECREMENT" }), -1);
+    assert.equal(counter(undefined, { type: 'DECREMENT' }), -1);
   });
 });
 
@@ -119,10 +119,10 @@ describe('Redux', () => {
 });
 
 describe('Count w/ React', () => {
-  const Counter = ( {
+  const Counter = ({
     value,
     onIncrement,
-    onDecrement
+    onDecrement,
   }) => (
     <div>
       <h1>{value}</h1>
@@ -137,8 +137,8 @@ describe('Count w/ React', () => {
     const render = () => {
       wrapper = mount(<Counter
         value={store.getState()}
-        onIncrement={ () => store.dispatch({type: 'INCREMENT' }) }
-        onDecrement={ () => store.dispatch({type: 'DECREMENT' }) }
+        onIncrement={() => store.dispatch({ type: 'INCREMENT' })}
+        onDecrement={() => store.dispatch({ type: 'DECREMENT' })}
       />);
     };
     render();

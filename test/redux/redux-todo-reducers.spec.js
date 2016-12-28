@@ -7,7 +7,7 @@ describe('todoApp', () => {
   describe('ADD_TODO', () => {
     it('can add todo', () => {
       assert.deepStrictEqual(todoApp(
-        {todos: [], visibilityFilter: 'SHOW_ALL'},
+        { todos: [], visibilityFilter: 'SHOW_ALL' },
         actions.addTodo('new item'),
       ), {
         visibilityFilter: 'SHOW_ALL',
@@ -21,8 +21,8 @@ describe('todoApp', () => {
         {
           visibilityFilter: 'SHOW_ALL',
           todos: [
-            { text: 'new item', completed: false, },
-            { text: 'new item2', completed: true, },
+            { text: 'new item', completed: false },
+            { text: 'new item2', completed: true },
           ],
         },
         actions.toggleTodo(1),
@@ -31,8 +31,8 @@ describe('todoApp', () => {
         {
           visibilityFilter: 'SHOW_ALL',
           todos: [
-            { text: 'new item', completed: false, },
-            { text: 'new item2', completed: false, },
+            { text: 'new item', completed: false },
+            { text: 'new item2', completed: false },
           ],
         },
       );
@@ -49,7 +49,7 @@ describe('todoApp', () => {
         },
         actions.setVisivilityFilter('SHOW_COMPLETED'),
       );
-      assert.deepStrictEqual(ret, {visibilityFilter: 'SHOW_COMPLETED', todos:[ ] });
+      assert.deepStrictEqual(ret, { visibilityFilter: 'SHOW_COMPLETED', todos: [] });
     });
   });
 });

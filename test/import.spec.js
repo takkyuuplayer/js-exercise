@@ -1,8 +1,8 @@
-import assert from 'power-assert'
+import assert from 'power-assert';
 
 import { one, two } from '../src/export.js';
 import { ONE, TWO } from '../src/export.js';
-import { ichi, ni, san} from '../src/export.js';
+import { ichi, ni, san } from '../src/export.js';
 import three from '../src/export.js';
 
 import def, * as exported from '../src/export.js';
@@ -38,13 +38,13 @@ describe('import', () => {
       TWO: 2,
 
       ichi: 1,
-      ni:undefined,
+      ni: undefined,
       san: 3,
 
-      "default": 3,
+      default: 3,
 
-      a:   1,
-      b:   2
+      a: 1,
+      b: 2,
     });
   });
 });
