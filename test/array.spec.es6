@@ -60,4 +60,17 @@ describe('Array', () => {
       assert.deepStrictEqual(arr2, [ [1,2,3], [4,100,6], [7,8,9]]);
     });
   });
+
+  describe('.every', () => {
+    it('return true when all items meat the condition', () => {
+      assert.strictEqual([2,4,6].every((item) => ( item % 2 === 0)), true);
+    });
+    it('return false when some item(s) do not meat the condition', () => {
+      assert.strictEqual([2,3,4].every((item) => ( item % 2 === 0)), false);
+    });
+    it('return always true for empty array', () => {
+      assert.strictEqual([].every((item) => ( item % 2 === 0)), true);
+      assert.strictEqual([].every((item) => ( item % 2 === 1)), true);
+    });
+  });
 });
