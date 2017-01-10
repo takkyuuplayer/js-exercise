@@ -19,7 +19,7 @@ describe('redux-undo', () => {
     const reducer = combineReducers({
       counter: undoable(counter),
     });
-    let store = createStore(reducer);
+    const store = createStore(reducer);
 
     it('will change state to manage history', () => {
       assert.deepStrictEqual(store.getState(), {
@@ -64,11 +64,11 @@ describe('redux-undo', () => {
     const reducer = combineReducers({
       counter: undoable(counter),
     });
-    let store = createStore(reducer);
+    const store = createStore(reducer);
 
-    store.dispatch({type:'INCREMENT'});
-    store.dispatch({type:'INCREMENT'});
-    store.dispatch({type:'INCREMENT'});
+    store.dispatch({ type: 'INCREMENT' });
+    store.dispatch({ type: 'INCREMENT' });
+    store.dispatch({ type: 'INCREMENT' });
 
     it('can dispatch undo', () => {
       assert.strictEqual(store.getState().counter.present, 3);
