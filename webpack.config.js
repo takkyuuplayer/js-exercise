@@ -6,6 +6,7 @@ module.exports = {
   entry: {
     reduxCounter: path.join(__dirname, './src/redux/counter/index.jsx'),
     reduxTodos: path.join(__dirname, './src/redux/todos/index.jsx'),
+    reduxFormSimple: path.join(__dirname, './src/redux-form/index.jsx'),
   },
   output: {
     path: outputDir,
@@ -18,7 +19,7 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?/,
-        loader: 'babel'
+        loader: 'babel',
       },
     ],
   },

@@ -1,3 +1,4 @@
 {
-  "presets": ["env", "react", "power-assert"]
+  "presets": ["env", "react", "power-assert"],
+  "plugins": ["transform-class-properties"]
 }
