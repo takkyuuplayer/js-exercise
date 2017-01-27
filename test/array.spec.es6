@@ -17,9 +17,12 @@ describe('Array', () => {
     });
   });
   describe('.slice', () => {
-    it('return part of array without altering original array', () => {
+    it('return shallow copy of part of array without altering original array', () => {
       let arr = [1, 2, 3];
 
+      assert.deepStrictEqual(arr.slice(), [1, 2, 3]);
+
+      assert.deepStrictEqual(arr.slice(0), [1, 2, 3]);
       assert.deepStrictEqual(arr.slice(0), [1, 2, 3]);
       assert.deepStrictEqual(arr.slice(1), [2, 3]);
       assert.deepStrictEqual(arr.slice(2), [3]);
