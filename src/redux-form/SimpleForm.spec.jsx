@@ -16,7 +16,7 @@ describe('redux-form', () => {
   }));
   const wrapper = mount(
     <Provider store={store}>
-      <SimpleForm onSubmit={spy} />
+      <SimpleForm handleFormValues={spy} />
     </Provider>,
   );
 
@@ -74,4 +74,5 @@ describe('redux-form', () => {
       firstName: 'takkyuu',
     }), true);
   });
+
 });
