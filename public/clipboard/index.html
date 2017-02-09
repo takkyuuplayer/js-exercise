@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
     <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
     <script src="https://unpkg.com/lodash@4.17.3/lodash.min.js"></script>
 
@@ -13,15 +15,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js"></script>
 
-    <title>Clip Board"</title>
+    <title>React App</title>
   </head>
   <body>
-    <button class="btn" data-clipboard-text="Text Number 1">
-      Copy
-    </button>
-    <button class="btn" data-clipboard-text="Text Number 2">
-      Copy
-    </button>
+    <div id="root"></div>
     <script type="text/babel">
       const clipboard = new Clipboard('.btn');
       clipboard.on('success', function(e) {
@@ -35,6 +32,19 @@
           console.error('Action:', e.action);
           console.error('Trigger:', e.trigger);
       });
+
+      ReactDOM.render(
+        <div>
+          <h1>Hello Clip Board!</h1>,
+          <button className="btn" data-clipboard-text="Text Number 1">
+            Copy
+          </button>
+          <button className="btn" data-clipboard-text="Text Number 2">
+            Copy
+          </button>
+        </div>
+      , document.getElementById('root')
+      );
     </script>
   </body>
 </html>
