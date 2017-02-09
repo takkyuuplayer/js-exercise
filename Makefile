@@ -14,3 +14,6 @@ upgrade:
 
 lint:
 	$(shell npm bin)/eslint --fix src test
+
+http-server:
+	$(shell npm bin)/http-server -t public/

@@ -9,6 +9,7 @@ module.exports = {
   ],
   "rules": {
     "react/forbid-prop-types": "off",
+    "react/no-array-index-key": "off",
   },
   "env": {
     "mocha": true,
