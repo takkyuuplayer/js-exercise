@@ -20,16 +20,6 @@ describe('Scope', () => {
     });
   });
 });
-describe('operator =', () => {
-  it('can assign value if it is not defied', () => {
-    let a = 1;
-    let b = 1;
-    a = b = 2;
-
-    assert.strictEqual(a, 2);
-    assert.strictEqual(b, 2);
-  });
-});
 describe('Allow functions', () => {
   const evens = [0, 2, 4];
 

@@ -3,3 +3,4 @@ export const setEditMode = bool => ({
   bool,
 });
 
+export default setEditMode;
