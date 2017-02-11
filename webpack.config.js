@@ -3,8 +3,6 @@ const path = require('path');
 const outputDir = path.join(__dirname, './public/redux/js');
 const isProduction = process.env.NODE_ENV === 'production';
 
-console.log(isProduction);
-
 module.exports = {
   entry: {
     reduxCounter: path.join(__dirname, './src/redux/counter/index.jsx'),
