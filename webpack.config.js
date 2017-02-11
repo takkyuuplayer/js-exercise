@@ -1,6 +1,9 @@
 const path = require('path');
 
 const outputDir = path.join(__dirname, './public/redux/js');
+const isProduction = process.env.NODE_ENV === 'production';
+
+console.log(isProduction);
 
 module.exports = {
   entry: {
@@ -13,17 +16,17 @@ module.exports = {
     filename: '[name].bundle.js',
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
   },
+  devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?/,
-        loader: 'babel',
+        use: 'babel-loader',
       },
     ],
   },
-  devtool: 'source-map',
   externals: [
     {
       window: 'window',
@@ -31,3 +34,4 @@ module.exports = {
     },
   ],
 };
+

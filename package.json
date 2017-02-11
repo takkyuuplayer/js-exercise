@@ -10,6 +10,7 @@
     "test:script": "mocha **/*.spec.js",
     "start": "./node_modules/.bin/http-server -t public/",
     "webpack": "webpack --display-error-details",
+    "webpack:production": "NODE_ENV='production' webpack -p --display-error-details",
     "webpack:watch": "webpack --watch --display-error-details"
   },
   "repository": {
@@ -57,7 +58,7 @@
     "sinon": "^1.17.6",
     "urijs": "^1.18.3",
     "uuid": "^3.0.0",
-    "webpack": "^1.13.2"
+    "webpack": "^2.2.1"
   },
   "devDependencies": {
     "eslint": "^3.12.2",
