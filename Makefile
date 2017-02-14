@@ -10,7 +10,7 @@ test:
 	yarn run test
 
 upgrade:
-	yarn upgrade
+	yarn outdated | awk 'NR>2{print $$1}' | sed '$$d' | xargs yarn upgrade
 
 lint:
 	$(shell npm bin)/eslint --fix src test
