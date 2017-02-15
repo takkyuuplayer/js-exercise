@@ -7,5 +7,11 @@ describe('Object', () => {
       assert.deepEqual(ret, { a: 1, b: 3, c: 4 });
     });
   });
+  describe('.keys', () => {
+    it('should return keys of object', () => {
+      const obj = { a: 1, b: 2 };
+      assert.deepStrictEqual(Object.keys(obj), ['a', 'b']);
+    });
+  });
 });
 
