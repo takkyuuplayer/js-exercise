@@ -1,6 +1,6 @@
 const path = require('path');
 
-const outputDir = path.join(__dirname, './public/redux/js');
+const outputDir = path.join(__dirname, './public/js');
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {

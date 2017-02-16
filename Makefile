@@ -9,6 +9,9 @@ setup:
 test:
 	yarn run test
 
+build:
+	yarn webpack:watch
+
 upgrade:
 	yarn outdated | awk 'NR>2{print $$1}' | sed '$$d' | xargs yarn upgrade
 
