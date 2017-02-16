@@ -25,6 +25,9 @@ describe('ajv', () => {
     it('can accpept schema to validate', () => {
       assert.equal(ajv.validate({ type: 'integer' }, 1), true);
       assert.equal(ajv.validate({ type: 'integer' }, '1'), false);
+
+      assert.equal(ajv.validate({ type: 'string' }, 1), false);
+      assert.equal(ajv.validate({ type: 'string' }, '1'), true);
     });
   });
 });
