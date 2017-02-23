@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+    <script src="https://unpkg.com/lodash@4.17.3/lodash.min.js"></script>
+
+    <title>React App</title>
+  </head>
+  <body>
+    <div style="height: 80px;" >
+      <div id="root" style="height: inherit; border: 1px solid blue;" ></div>
+    </div>
+    <script type="text/babel">
+    const list = _.range(0, 100).map(num => <li key={num} >{num}</li>);
+ReactDOM.render(
+  <ul style={{maxHeight: '80%', overflowY: 'auto', border: '1px solid black'}}>{list}</ul>,
+document.getElementById('root')
+);
+    </script>
+  </body>
+</html>
