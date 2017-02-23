@@ -11,4 +11,10 @@ describe('lodash', () => {
       assert.strictEqual(fp.some([1, 2, 3], num => num % 2 === 0), false);
     });
   });
+  describe('.last', () => {
+    it('should return undefined for empty array', () => {
+      assert.strictEqual(_.last([]), undefined);
+      assert.strictEqual(fp.last([]), undefined);
+    });
+  });
 });
