@@ -19,6 +19,26 @@ describe('urijs', () => {
       });
       assert.equal(uri.toString(), '?client_id=12345&scope=user%3Aemail&state=abcdefg');
     });
+    it('should remove current query', () => {
+      const uri = urijs('https://github.com/takkyuuplayer?hoge=1').query({
+        client_id: 12345,
+        scope: 'user:email',
+        state: 'abcdefg',
+      });
+      assert.equal(uri.toString(), 'https://github.com/takkyuuplayer?client_id=12345&scope=user%3Aemail&state=abcdefg');
+    });
+  });
+  describe('.addSearch', () => {
+    it('should add query', () => {
+      const uri = urijs('https://github.com/takkyuuplayer?hoge=1').addSearch({
+        client_id: 12345,
+      });
+      assert.equal(uri.toString(), 'https://github.com/takkyuuplayer?hoge=1&client_id=12345');
+    });
+    it('should do nothing for undefined', () => {
+      const uri = urijs('https://github.com/takkyuuplayer?hoge=1').addSearch({});
+      assert.equal(uri.toString(), 'https://github.com/takkyuuplayer?hoge=1');
+    });
   });
   describe('.parse', () => {
     it('should parse uri', () => {
