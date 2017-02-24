@@ -17,4 +17,20 @@ describe('lodash', () => {
       assert.strictEqual(fp.last([]), undefined);
     });
   });
+  describe('.isUndefined', () => {
+    it('should return true for undefined value', () => {
+      assert.strictEqual(_.isUndefined(undefined), true);
+      assert.strictEqual(fp.isUndefined(undefined), true);
+
+      assert.strictEqual(_.isUndefined(1), false);
+      assert.strictEqual(fp.isUndefined(1), false);
+
+      const obj = { a: 1 };
+
+      assert.strictEqual(_.isUndefined(obj.a), false);
+      assert.strictEqual(_.isUndefined(obj.b), true);
+      assert.strictEqual(fp.isUndefined(obj.a), false);
+      assert.strictEqual(fp.isUndefined(obj.b), true);
+    });
+  });
 });
