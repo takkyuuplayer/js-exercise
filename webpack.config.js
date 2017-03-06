@@ -5,9 +5,9 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   entry: {
-    reduxCounter: path.join(__dirname, './src/redux/counter/index.jsx'),
-    reduxTodos: path.join(__dirname, './src/redux/todos/index.jsx'),
-    reduxFormSimple: path.join(__dirname, './src/redux-form/index.jsx'),
+    reduxCounter: path.join(__dirname, './src/redux/counter/index'),
+    reduxTodos: path.join(__dirname, './src/redux/todos/index'),
+    reduxFormSimple: path.join(__dirname, './src/redux-form/index'),
   },
   output: {
     path: outputDir,
