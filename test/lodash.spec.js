@@ -33,4 +33,10 @@ describe('lodash', () => {
       assert.strictEqual(fp.isUndefined(obj.b), true);
     });
   });
+  describe('range', () => {
+    it('should return range not including the last number', () => {
+      assert.deepStrictEqual(_.range(0, 5), [0, 1, 2, 3, 4]);
+      assert.deepStrictEqual(fp.range(0, 5), [0, 1, 2, 3, 4]);
+    });
+  });
 });
