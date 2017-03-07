@@ -9,6 +9,7 @@ module.exports = {
     reduxTodos: path.join(__dirname, './src/redux/todos/index'),
     reduxFormSimple: path.join(__dirname, './src/redux-form/index'),
     form: path.join(__dirname, './src/form/index'),
+    reactComponent: path.join(__dirname, './src/react-components/index'),
   },
   output: {
     path: outputDir,
@@ -23,6 +24,10 @@ module.exports = {
       {
         test: /\.jsx?/,
         use: 'babel-loader',
+      },
+      {
+        test: /\.css?/,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
