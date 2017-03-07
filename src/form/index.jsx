@@ -2,8 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import FileInput from './File';
+import SelectBox from './Select';
 
 ReactDOM.render(
-  <FileInput />,
+  <div>
+    <FileInput />
+    <SelectBox />
+  </div>,
   document.getElementById('root'),
 );

@@ -8,6 +8,7 @@ module.exports = {
     reduxCounter: path.join(__dirname, './src/redux/counter/index'),
     reduxTodos: path.join(__dirname, './src/redux/todos/index'),
     reduxFormSimple: path.join(__dirname, './src/redux-form/index'),
+    form: path.join(__dirname, './src/form/index'),
   },
   output: {
     path: outputDir,
