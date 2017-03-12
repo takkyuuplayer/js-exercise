@@ -5,23 +5,16 @@ describe('freeze', () => {
   const list = [{
     a: 1,
   }];
-  Object.freeze(list);
+
+  it('should return freezed object', () => {
+    assert.deepStrictEqual(Object.freeze(list), list);
+  });
 
   it('can freeze object properties', () => {
-    try {
-      list.push(0);
-      assert(false);
-    } catch (e) {
-      assert('Exception to update freezed object');
-    }
+    assert.throws(() => { list.push(0); });
   });
   it('can not freeze inner objects', () => {
-    try {
-      list[0].a = 100;
-      assert('cannot freeze!');
-    } catch (e) {
-      assert(false);
-    }
+    assert.doesNotThrow(() => { list[0].a = 100; });
   });
 });
 
@@ -29,22 +22,14 @@ describe('deepFreeze', () => {
   const list = [{
     a: 1,
   }];
-  deepFreeze(list);
+  it('shoudl return freezed object', () => {
+    assert.deepStrictEqual(deepFreeze(list), list);
+  });
 
   it('can freeze object properties', () => {
-    try {
-      list.push(0);
-      assert(false);
-    } catch (e) {
-      assert('Freezed');
-    }
+    assert.throws(() => { list.push(0); });
   });
   it('can freeze inner objects', () => {
-    try {
-      list[0].a = 100;
-      assert(false);
-    } catch (e) {
-      assert('Freezed');
-    }
+    assert.throws(() => { list[0].a = 100; });
   });
 });
