@@ -11,4 +11,9 @@ describe('node-fetch', () => {
         done();
       });
   });
+
+  it('can be applied async/await', async () => {
+    const json = await fetch('https://api.github.com/').then(response => response.json());
+    assert.strictEqual(json.current_user_url, 'https://api.github.com/user');
+  });
 });
