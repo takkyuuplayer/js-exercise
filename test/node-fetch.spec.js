@@ -16,4 +16,12 @@ describe('node-fetch', () => {
     const json = await fetch('https://api.github.com/').then(response => response.json());
     assert.strictEqual(json.current_user_url, 'https://api.github.com/user');
   });
+
+  it('should fetch response as same interface as fetch', async () => {
+    const json = await fetch('https://api.github.com/a')
+      .then(res => res.json())
+      .then(json => console.log('aaa'))
+
+      console.log(json);
+  });
 });
