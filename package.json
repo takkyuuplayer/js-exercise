@@ -44,6 +44,7 @@
     "foreman": "^2.0.0",
     "http-server": "^0.9.0",
     "immutable": "^3.8.1",
+    "jquery": "1.12.4",
     "jsdom": "^9.6.0",
     "jsdom-global": "^2.1.0",
     "localStorage": "^1.0.3",
