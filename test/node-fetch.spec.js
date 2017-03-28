@@ -20,8 +20,8 @@ describe('node-fetch', () => {
   it('should fetch response as same interface as fetch', async () => {
     const json = await fetch('https://api.github.com/a')
       .then(res => res.json())
-      .then(json => console.log('aaa'))
+      .then(() => console.log('aaa'));
 
-      console.log(json);
+    console.log(json);
   });
 });
