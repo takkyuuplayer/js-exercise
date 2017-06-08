@@ -2,6 +2,7 @@ import assert from 'power-assert';
 
 import fetch from 'node-fetch';
 
+/* eslint-disable no-console */
 describe('node-fetch', () => {
   it('should fetch response as same interface as fetch', (done) => {
     fetch('https://api.github.com/')
