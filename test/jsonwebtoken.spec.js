@@ -15,7 +15,7 @@ describe('jsonwebtoken', () => {
   describe('.verify', () => {
     it('should throw exception when token is invalid', () => {
       const token = jwt.sign({ foo: 'bar' }, 'secret');
-      assert.throws(() => { jwt.verify(token, 'wrong') });
+      assert.throws(() => { jwt.verify(token, 'wrong'); });
     });
   });
 });
