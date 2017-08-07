@@ -20,3 +20,6 @@ lint:
 
 http-server:
 	$(shell npm bin)/http-server -t public/
+
+mocha:
+	cd docker && $(MAKE) mocha

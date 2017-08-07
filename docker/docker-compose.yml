@@ -1,0 +1,12 @@
+version: '3'
+services:
+  app:
+    container_name: node-exercise
+    build: .
+    volumes:
+      - ../:/srv/
+    environment:
+      - TZ=Asia/Tokyo
+    tty: true
+    command: bash
+    working_dir: /srv
