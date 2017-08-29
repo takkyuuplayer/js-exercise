@@ -10,3 +10,7 @@ services:
     tty: true
     command: bash
     working_dir: /srv
+    links:
+      - redis
+  redis:
+    image: redis
