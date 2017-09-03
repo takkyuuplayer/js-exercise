@@ -4,6 +4,11 @@ cache:
     - node_modules
 node_js:
   - "6"
+services:
+  - redis-server
+addons:
+  hosts:
+    - redis
 before_install:
   - npm install --global yarn
 install:
