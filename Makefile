@@ -1,19 +1,18 @@
-.PHONY: test
+.PHONY: test node_modules node_modules/upgrade
 
-all: setup
+setup: node_modules node_modules/upgrade
 
-setup:
+node_modules:
 	yarn install
-	yarn upgrade
+
+node_modules/upgrade:
+	yarn upgrade --latest
 
 test:
 	yarn run test
 
 build:
 	yarn webpack:watch
-
-upgrade:
-	yarn outdated | awk 'NR>2{print $$1}' | sed '$$d' | xargs yarn upgrade
 
 lint:
 	$(shell npm bin)/eslint --fix src test
