@@ -50,6 +50,7 @@ describe('urijs', () => {
           password: null,
           hostname: 'github.com',
           port: null,
+          preventInvalidHostname: false,
           path: '/login/oauth/authorize' },
     );
     });
