@@ -12,5 +12,8 @@ services:
     working_dir: /srv
     links:
       - redis
+      - mongo
   redis:
     image: redis
+  mongo:
+    image: mongo
