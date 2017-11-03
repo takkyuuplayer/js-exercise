@@ -10,11 +10,12 @@ describe('exporess', () => {
     });
 
     it('should return hello world', async () => {
-      app.listen(3000, () => {});
-
+      const server = app.listen(3000, () => {});
       const body = await request('http://localhost:3000');
 
       assert.strictEqual(body, 'Hello World!');
+
+      server.close();
     });
   });
 
@@ -33,17 +34,15 @@ describe('exporess', () => {
           assert.strictEqual(req.hoge, 'hoge');
           res.send('Hello World!');
         });
-        app.listen(3001, () => {});
+        const server = app.listen(3001, () => {});
 
         const body = await request('http://localhost:3001');
 
         assert.strictEqual(body, 'Hello World!');
+
+        server.close();
       });
     });
-  });
-
-  describe('middleware', () => {
-
   });
 });
 

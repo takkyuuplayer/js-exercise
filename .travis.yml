@@ -6,9 +6,11 @@ node_js:
   - "6"
 services:
   - redis-server
+  - mongo-server
 addons:
   hosts:
     - redis
+    - mongo
 before_install:
   - npm install --global yarn
 install:

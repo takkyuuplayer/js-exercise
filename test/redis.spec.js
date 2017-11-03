@@ -2,24 +2,26 @@ import assert from 'power-assert';
 import redis from 'redis';
 
 describe('redis', () => {
-  let client;
-
   describe('.createClient', () => {
     it('should connect redis server', (done) => {
-      client = redis.createClient({ host: 'redis' });
+      const client = redis.createClient({ host: 'redis' });
 
       client.once('ready', () => {
         assert(client);
-        done();
+        client.quit(done);
       });
     });
   });
 
+  let client;
   before((done) => {
     client = redis.createClient({ host: 'redis' });
     client.once('ready', () => {
       client.flushdb(done);
     });
+  });
+  after((done) => {
+    client.quit(done);
   });
 
   describe('.set/.get', () => {
@@ -43,4 +45,5 @@ describe('redis', () => {
       });
     });
   });
+  /**/
 });

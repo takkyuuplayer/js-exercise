@@ -10,10 +10,9 @@ describe('mongodb', () => {
 
         assert(db);
 
-        it('should returns collection', () => {
-          assert(db.collection('Movies'));
-        });
+        await db.close()
       });
+
     });
   });
 });
