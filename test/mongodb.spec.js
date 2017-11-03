@@ -10,9 +10,8 @@ describe('mongodb', () => {
 
         assert(db);
 
-        await db.close()
+        await db.close();
       });
-
     });
   });
 });

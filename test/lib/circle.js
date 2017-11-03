@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 const PI = Math.PI;
 
 function Circle(radious) {

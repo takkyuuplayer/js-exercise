@@ -14,14 +14,14 @@ export default function todos(state = initialState, action) {
         completed: false,
         text: action.text,
       },
-        ...state,
+      ...state,
       ];
     case ActionTypes.DELETE_TODO:
       return state.filter(todo => todo.id !== action.id);
     case ActionTypes.EDIT_TODO:
       return state.map(todo => (todo.id === action.id
-          ? Object.assign({}, todo, { text: action.text })
-          : todo));
+        ? Object.assign({}, todo, { text: action.text })
+        : todo));
     case ActionTypes.COMPLETE_TODO:
       return state.map(todo => (todo.id === action.id
         ? Object.assign({}, todo, { completed: !todo.completed })
@@ -30,8 +30,7 @@ export default function todos(state = initialState, action) {
     case ActionTypes.COMPLETE_ALL: {
       const areAllCompleted = state.every(todo => todo.completed);
       return state.map(todo =>
-        Object.assign({}, todo, { completed: !areAllCompleted }),
-      );
+        Object.assign({}, todo, { completed: !areAllCompleted }));
     }
 
     case ActionTypes.CLEAR_COMPLETED:

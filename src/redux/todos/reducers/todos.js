@@ -8,8 +8,8 @@ function todo(state = {}, action) {
       };
     case 'TOGGLE_TODO':
       return state.id === action.id
-          ? Object.assign({}, state, { completed: !state.completed })
-          : state;
+        ? Object.assign({}, state, { completed: !state.completed })
+        : state;
     default:
       return state;
   }

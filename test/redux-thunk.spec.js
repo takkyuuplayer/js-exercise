@@ -14,8 +14,8 @@ function reducer(state = 0, action) {
 }
 
 const store = createStore(
-    reducer,
-    applyMiddleware(thunk),
+  reducer,
+  applyMiddleware(thunk),
 );
 
 function increment() {
@@ -30,8 +30,7 @@ function incrementAsync() {
       setTimeout(() => {
         dispatch(increment());
         resolve();
-      }, 1000),
-    )
+      }, 1000))
   );
 }
 
