@@ -21,3 +21,19 @@ describe('operator ||', () => {
     assert.strictEqual(undefined || false || 0, 0);
   });
 });
+
+/* eslint-disable no-bitwise */
+describe('operator ~', () => {
+  it('is Bitwise NOT operator', () => {
+    assert.strictEqual(~0, -1);
+    assert.strictEqual(~10, -11);
+  });
+  describe('double tilde ~~', () => {
+    it('can be used as Math.floor', () => {
+      assert.strictEqual(~10.1, -11);
+      assert.strictEqual(~~10.1, 10);
+      assert.strictEqual(~~10.9999999, 10);
+    });
+  });
+});
+/* eslint-enable no-bitwise */

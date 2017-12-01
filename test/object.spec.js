@@ -13,5 +13,16 @@ describe('Object', () => {
       assert.deepStrictEqual(Object.keys(obj), ['a', 'b']);
     });
   });
+  describe('delete', () => {
+    it('should delete key', () => {
+      const obj = { a: 1, b: 2 };
+      const a = delete obj.a;
+      const c = delete obj.c;
+
+      assert.deepStrictEqual(obj, { b: 2 });
+      assert.strictEqual(a, true);
+      assert.strictEqual(c, true);
+    });
+  });
 });
 
