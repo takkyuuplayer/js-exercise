@@ -54,6 +54,7 @@
     "mocha": "^4.0.1",
     "mongodb": "^2.2.33",
     "node-fetch": "^1.6.3",
+    "nodemon": "^1.14.12",
     "power-assert": "^1.4.1",
     "rc-pager": "^2.2.0",
     "rc-pagination": "^1.7.3",
