@@ -9,7 +9,7 @@ describe('csv-parse/lib/sync', () => {
     const records = parse(csv, { columns: true });
 
     assert.deepStrictEqual(
-      [{ col1: 'a', col2: 'b', col3: 'c' },
+      [{ col1: 'a', col2: '', col3: 'c' },
         { col1: 'd', col2: 'e', col3: 'f' }]
       , records,
     );
