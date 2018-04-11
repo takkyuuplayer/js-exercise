@@ -1,5 +1,5 @@
 # es6-exercise
 
-[![Build Status](https://travis-ci.org/takkyuuplayer/es6-exercise.svg?branch=master)](https://travis-ci.org/takkyuuplayer/es6-exercise)
+[![Build Status](https://travis-ci.org/takkyuuplayer/js-exercise.svg?branch=master)](https://travis-ci.org/takkyuuplayer/js-exercise)
 
-ES6 exercise
+ECMAScript exercise
