@@ -28,6 +28,10 @@ describe('string', () => {
 
       assert.strictEqual('r * r * pi'.replace(reg2, 3.14), 'r * r * 3.14');
     });
+
+    it('should replace s+ ', () => {
+      assert.strictEqual(' _ '.replace(/\s+/g, ''), '_');
+    });
   });
 
   describe('.match', () => {
