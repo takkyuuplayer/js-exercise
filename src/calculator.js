@@ -34,6 +34,7 @@ class Calculator {
 
     return Number(inputStr);
   }
+
   calcWithVars(inputList) {
     const defined = {};
 
@@ -41,9 +42,8 @@ class Calculator {
       const [, variable, expression] = input.match(/^([a-z]+) = (.+)$/);
 
       const replaced = Object.keys(defined).reduce(
-        (ret, key) =>
-          ret.replace(new RegExp(`\\b${key}\\b`), defined[key])
-        , expression,
+        (ret, key) => ret.replace(new RegExp(`\\b${key}\\b`), defined[key]),
+        expression,
       );
 
       defined[variable] = this.calc(replaced);

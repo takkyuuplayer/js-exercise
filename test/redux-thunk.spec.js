@@ -26,11 +26,10 @@ function increment() {
 
 function incrementAsync() {
   return dispatch => (
-    new Promise(resolve =>
-      setTimeout(() => {
-        dispatch(increment());
-        resolve();
-      }, 1000))
+    new Promise(resolve => setTimeout(() => {
+      dispatch(increment());
+      resolve();
+    }, 1000))
   );
 }
 

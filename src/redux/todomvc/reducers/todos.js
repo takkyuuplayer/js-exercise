@@ -29,8 +29,7 @@ export default function todos(state = initialState, action) {
 
     case ActionTypes.COMPLETE_ALL: {
       const areAllCompleted = state.every(todo => todo.completed);
-      return state.map(todo =>
-        Object.assign({}, todo, { completed: !areAllCompleted }));
+      return state.map(todo => Object.assign({}, todo, { completed: !areAllCompleted }));
     }
 
     case ActionTypes.CLEAR_COMPLETED:

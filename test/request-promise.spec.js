@@ -14,4 +14,3 @@ describe('request-promise', () => {
     server.close();
   });
 });
-

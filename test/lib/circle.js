@@ -14,4 +14,3 @@ Circle.prototype.circumference = function circumference() {
 };
 
 module.exports = Circle;
-
